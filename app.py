@@ -1,16 +1,13 @@
 import random
-from flask import Flask
+from flask import Flask, render_template as rend
 app = Flask(__name__)
-
+frettir = {"1":["yeet", "maður yeetaði"]}
 @app.route('/')
 def index():
-	return '<h1>Hello World</h1> <a href="/dice/">teningar</a> <a href="/arnor/">arnor</a>'
-@app.route('/arnor/')
-def arnor():
-	return '<h3>halló</h3>'
-@app.route('/dice/')
-def dice():
-	return '<h1>' + str(random.randint(1,6)) + '</h1>'
+	return rend("base.html", title="index") + '<h1>oh hi there</h1>'
+@app.route("/<frett>")
+def frett(frett):
+	return rend("base.html", title=frettir[frett][0], content=frettir[frett][1])
 
 if __name__ == "__main__":
 	app.run(debug=True)
