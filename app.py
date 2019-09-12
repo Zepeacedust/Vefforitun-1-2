@@ -11,7 +11,7 @@ def index():
 @app.route("/<frett>")
 def frett(frett):
 	if frett in frettir.keys():
-		return rend("frett.html", title=frettir[frett][0], content=frettir[frett][1])
+		return rend("frett.html", title=frettir[frett][0], content=frettir[frett][1], pic=frett)
 	else:
 		return page_not_found(None)
 
